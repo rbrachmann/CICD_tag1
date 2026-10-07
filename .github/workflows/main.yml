@@ -2,11 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches:
-      - main
-runs:
+    branches: main
   using: 'node24'
-  
+
 jobs:
   lint:
     runs-on: ubuntu-latest
