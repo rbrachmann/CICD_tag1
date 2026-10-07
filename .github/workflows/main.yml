@@ -1,4 +1,4 @@
-name: CI/CD mit GCC
+name: CI/CD mit GCC Rainer
 
 on:
   push:
