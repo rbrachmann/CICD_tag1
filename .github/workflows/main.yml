@@ -23,8 +23,26 @@ jobs:
 #      - name: clang-tidy
 #        run: clang-tidy main.cpp -checks='bugprone-*,performance-*,readability-*,modernize-*' -warnings-as-errors='*' -- -std=c++17
 
-  build:
+
+  unittest:
     needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code from Git
+        uses: actions/checkout@v4
+
+      - name: Install GoogleTest
+        run: sudo apt-get install -y g++ libgtest-dev
+
+      - name: Build unit tests
+        run: g++ test_calc.cpp -o unittests -std=c++17 -Wall -lgtest -lgtest_main -pthread && ./unittests
+
+
+
+
+  build:
+    needs: unittest
     runs-on: ubuntu-latest
 
     strategy:
@@ -43,12 +61,12 @@ jobs:
         run: sudo apt-get install -y g++ clang
 
       - name: Build
-        run: ${{ matrix.compiler }} main.cpp -o greeting -std=c++${{ matrix.std }} -Wall
+        run: ${{ matrix.compiler }} main.cpp -o programm -std=c++${{ matrix.std }} -Wall
 
       - name: Test
         run: |
-          OUTPUT=$(./greeting)
-          if [ "$OUTPUT" = "Hallo RainerA" ]; then
+          OUTPUT=$(./programm)
+          if [ "$OUTPUT" = "Hello" ]; then
             echo "Test bestanden"
           else
             echo "Test fehlgeschlagen: '$OUTPUT'"
