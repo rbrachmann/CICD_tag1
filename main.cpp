@@ -2,9 +2,9 @@
 
 using namespace std;
 
-int main()
+int main() 
 {
-    cout << "Hallo RainerA" << endl;
-     
+    if (true)
+        cout << greet() << endl;
     return 0;
 }
