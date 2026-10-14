@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD Tag2
 
 on:
   workflow_dispatch:
