@@ -3,8 +3,8 @@ name: Python Unittest
 #on:
  # workflow_dispatch:
  on:
- push:
- branches: main
+  push:
+   branches: main
 
 jobs:
   test:
